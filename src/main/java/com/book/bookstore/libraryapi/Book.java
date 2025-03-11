@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "book")
 @Getter
+@Setter
 public class Book {
 
     @Id
@@ -19,9 +20,11 @@ public class Book {
     private Long id;
 
     private String title;
-    private String author;
     private LocalDate publicationDate;
     private int pages;
     private int price;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 }

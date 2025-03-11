@@ -1,19 +1,22 @@
 package com.book.bookstore.libraryapi;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/book")
+@Validated
 public class BookController {
 
     @Autowired
     private BookService bookService;
 
     @GetMapping
-    public List<Book> getBooks() {
+    public List<BookResponse> getBooks() {
         return bookService.getAllBooks();
     }
 
@@ -23,8 +26,8 @@ public class BookController {
     }
 
     @PostMapping
-    public Book addBook(@RequestBody Book book) throws Exception {
-        return bookService.addBook(book);
+    public Book addBook(@Valid @RequestBody BookDTO bookDTO) throws Exception {
+        return bookService.addBook(bookDTO);
     }
 
     @PutMapping
