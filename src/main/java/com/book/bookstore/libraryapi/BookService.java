@@ -22,9 +22,9 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public Book getBookById(long id) {
+    public BookResponse getBookById(long id) {
         Optional<Book> book = bookRepository.findById(id);
-        return book.orElse(null);
+        return BookMapper.INSTANCE.toBookResponse(book.orElse(null));
     }
 
     public Book addBook(BookDTO bookDTO) throws Exception {

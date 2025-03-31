@@ -11,8 +11,8 @@ public interface BookMapper {
 
     Book toBook(BookDTO bookDTO);
 
-//    @Mapping(target = "authorFullName", source = "author.lastName")
+    @Mapping(target = "authorFullName", source = "author.lastName")
 //    @Mapping(target = "publicationDate", source = "publicationDate")
-    @Mapping(target = "authorFullName", expression = "java(book.getAuthor().getFirstName() + \" \" + book.getAuthor().getLastName())")
+//    @Mapping(target = "authorFullName", expression = "java(book.getAuthor().getFirstName() + \" \" + book.getAuthor().getLastName())")
     BookResponse toBookResponse(Book book);
 }

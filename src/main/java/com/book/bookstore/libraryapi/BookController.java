@@ -1,7 +1,7 @@
 package com.book.bookstore.libraryapi;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/book")
 @Validated
+@RequiredArgsConstructor
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
 
     @GetMapping
     public List<BookResponse> getBooks() {
@@ -21,8 +21,12 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable int id) {
-        return bookService.getBookById(id);
+    public BookResponse getBook(@PathVariable int id) throws ResouceNotFoundException {
+        BookResponse response = bookService.getBookById(id);
+        if (response == null) {
+            throw new ResouceNotFoundException("No Book found");
+        }
+        return response;
     }
 
     @PostMapping

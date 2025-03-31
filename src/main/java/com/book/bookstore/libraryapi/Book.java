@@ -1,5 +1,6 @@
 package com.book.bookstore.libraryapi;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +27,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @JsonBackReference  // Parent side
     private Author author;
 }

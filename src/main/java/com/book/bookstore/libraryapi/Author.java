@@ -1,6 +1,7 @@
 package com.book.bookstore.libraryapi;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "author")
 @Getter
+@Setter
 public class Author {
 
     @Id
@@ -25,5 +27,6 @@ public class Author {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonManagedReference // Parent side
     private List<Book> books;
 }
