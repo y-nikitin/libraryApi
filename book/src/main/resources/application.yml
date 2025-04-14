@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Book
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 12345
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8082
